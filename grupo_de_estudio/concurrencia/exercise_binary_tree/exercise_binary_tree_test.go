@@ -86,6 +86,62 @@ func TestSame(t *testing.T) {
 	}
 }
 
+func Test_compareUsingSelect(t *testing.T) {
+	tests := []struct {
+		name     string
+		signals1 []int
+		signals2 []int
+		want     bool
+	}{
+		{
+			name:     "Empty channels should return true",
+			signals1: []int{},
+			signals2: []int{},
+			want:     true,
+		},
+		{
+			name:     "First channel with one signal and second without should return false",
+			signals1: []int{1},
+			signals2: []int{},
+			want:     false,
+		},
+		{
+			name:     "Second channel with one signal and first without should return false",
+			signals1: []int{},
+			signals2: []int{1},
+			want:     false,
+		},
+		{
+			name:     "Both with one different element should return false ",
+			signals1: []int{0},
+			signals2: []int{1},
+			want:     false,
+		},
+		{
+			name:     "Both with 3 same elements should return true ",
+			signals1: []int{1, 2, 3},
+			signals2: []int{1, 2, 3},
+			want:     true,
+		},
+		{
+			name:     "Both with 3 different elements should return false ",
+			signals1: []int{3, 2, 1},
+			signals2: []int{1, 2, 3},
+			want:     false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			ch1 := newChannelWithElementsAsSignals(tt.signals1)
+			ch2 := newChannelWithElementsAsSignals(tt.signals2)
+
+			if got := compareUsingSelect(ch1, ch2); got != tt.want {
+				t.Errorf("compareUsingSelect() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
 func getLeafTree() *tree.Tree {
 	return &tree.Tree{
 		Left:  nil,
@@ -170,62 +226,6 @@ func getFirstTreeExample() *tree.Tree {
 		Right: rama8,
 	}
 	return rama3
-}
-
-func Test_compareUsingSelect(t *testing.T) {
-	tests := []struct {
-		name     string
-		signals1 []int
-		signals2 []int
-		want     bool
-	}{
-		{
-			name:     "Empty channels should return true",
-			signals1: []int{},
-			signals2: []int{},
-			want:     true,
-		},
-		{
-			name:     "First channel with one signal and second without should return false",
-			signals1: []int{1},
-			signals2: []int{},
-			want:     false,
-		},
-		{
-			name:     "Second channel with one signal and first without should return false",
-			signals1: []int{},
-			signals2: []int{1},
-			want:     false,
-		},
-		{
-			name:     "Both with one different element should return false ",
-			signals1: []int{0},
-			signals2: []int{1},
-			want:     false,
-		},
-		{
-			name:     "Both with 3 same elements should return true ",
-			signals1: []int{1, 2, 3},
-			signals2: []int{1, 2, 3},
-			want:     true,
-		},
-		{
-			name:     "Both with 3 different elements should return false ",
-			signals1: []int{3, 2, 1},
-			signals2: []int{1, 2, 3},
-			want:     false,
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			ch1 := newChannelWithElementsAsSignals(tt.signals1)
-			ch2 := newChannelWithElementsAsSignals(tt.signals2)
-
-			if got := compareUsingSelect(ch1, ch2); got != tt.want {
-				t.Errorf("compareUsingSelect() = %v, want %v", got, tt.want)
-			}
-		})
-	}
 }
 
 func newChannelWithElementsAsSignals(inputSlice []int) chan int {

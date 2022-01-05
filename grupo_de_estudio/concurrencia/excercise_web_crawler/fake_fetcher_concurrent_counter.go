@@ -8,24 +8,22 @@ type fakeFetcherConcurrentCounter struct {
 	urlNodes map[string][]string
 
 	// For fist call
-	firstCallPassedFlag bool
-	firstCallMutex      sync.Mutex
+	firstCallFlag  bool
+	firstCallMutex sync.Mutex
 
 	// For nested calls
 	wg sync.WaitGroup
 }
 
 func (f *fakeFetcherConcurrentCounter) Fetch(url string) (string, []string, error) {
-	// Check if this is the first call to fetch (that shouldn't be made concurrently)
 	f.firstCallMutex.Lock()
 	{
-		if !f.firstCallPassedFlag {
-			f.firstCallPassedFlag = true
-			nextUrls := f.urlNodes[url]
-
-			return "", nextUrls, nil
+		if !f.firstCallFlag {
+			// The first call is not required to be run in parallel so don't wait for waitgroup
+			f.firstCallFlag = true
+			f.firstCallMutex.Unlock()
+			return "", f.urlNodes[url], nil
 		}
-
 	}
 	f.firstCallMutex.Unlock()
 
@@ -33,7 +31,5 @@ func (f *fakeFetcherConcurrentCounter) Fetch(url string) (string, []string, erro
 	f.wg.Done()
 	f.wg.Wait()
 
-	nextUrls := f.urlNodes[url]
-
-	return "", nextUrls, nil
+	return "", f.urlNodes[url], nil
 }

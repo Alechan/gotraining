@@ -26,8 +26,9 @@ func Same(t1, t2 *tree.Tree) bool {
 	ch2 := walkTreeIntoChannel(t2)
 
 	// Comparar las señales en ambos channels
-	//return compareUsingSlices(ch1, ch2)
-	return compareUsingSelect(ch1, ch2)
+	return compareUsingSlices(ch1, ch2)
+	//return compareUsingSelect(ch1, ch2)
+	//return compareUsingSelect2(ch1, ch2)
 
 }
 
@@ -40,22 +41,37 @@ func walkTreeIntoChannel(t *tree.Tree) chan int {
 	return ch
 }
 
-func compareUsingSelect(ch1 chan int, ch2 chan int) bool {
-	// Get signals from bot channels
-	var v1, v2 int
-	ok1, ok2 := true, true
+func compareUsingSelect2(ch1 chan int, ch2 chan int) bool {
+	for v1 := range ch1 {
+		v2 := <-ch2
 
-	for (ok1 != false) && (ok2 != false) {
-		// Get signals from bot channels
-		v1, ok1 = <-ch1
-		v2, ok2 = <-ch2
+		fmt.Println(fmt.Sprintf("comapring %v with %v", v1, v2))
 
-		// Compare signals
-		sameValue := v1 == v2
-		sameOk := ok1 == ok2
-		if !sameValue || !sameOk {
+		if v1 != v2 {
 			return false
 		}
+	}
+	_, ok2 := <-ch2
+	if ok2 {
+		return false
+	}
+
+	return true
+}
+
+func compareUsingSelect(ch1 chan int, ch2 chan int) bool {
+	for v1 := range ch1 {
+		v2 := <-ch2
+
+		fmt.Println(fmt.Sprintf("comapring %v with %v", v1, v2))
+
+		if v1 != v2 {
+			return false
+		}
+	}
+	_, ok2 := <-ch2
+	if ok2 {
+		return false
 	}
 
 	return true
