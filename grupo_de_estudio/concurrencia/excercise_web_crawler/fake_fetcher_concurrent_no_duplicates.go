@@ -15,9 +15,6 @@ func (f *fakeFetcherConcurrentNoDuplicates) Fetch(url string) (string, []string,
 	// Add 1 to the urls counter for asserts in test
 	f.urlsCounterMutex.Lock()
 	{
-		if _, in := f.urlsCounter[url]; !in {
-			f.urlsCounter[url] = 0
-		}
 		f.urlsCounter[url]++
 	}
 	f.urlsCounterMutex.Unlock()
