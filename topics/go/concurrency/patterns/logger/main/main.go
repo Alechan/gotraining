@@ -6,11 +6,10 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"os/signal"
 	"time"
-
-	"github.com/ardanlabs/gotraining/topics/go/concurrency/patterns/logger"
 )
 
 // device allows us to mock a device we write logs to.
@@ -38,13 +37,20 @@ func main() {
 	// Create a logger value with a buffer of capacity
 	// for each goroutine that will be logging.
 	var d device
-	l := logger.New(&d, grs)
+	// Versión de logging “original” (usa el log oficial)
+	l := log.New(&d, "prefix", 0)
+	// Versión de logging “arreglada” (el logger no es el oficial de Go)
+	//l := logger.New(&d, grs)
 
-	// Generate goroutines, each writing to disk.
+	// Generate goroutines, each writing to disk
+
 	for i := 0; i < grs; i++ {
 		go func(id int) {
 			for {
-				l.Write(fmt.Sprintf("%d: log data", id))
+				// Versión original que printea a STDOUT
+				l.Println(fmt.Sprintf("%d: log data", id))
+				// Versión arreglada que usa el logger ad-hoc
+				//l.Write(fmt.Sprintf("%d: log data", id))
 				time.Sleep(10 * time.Millisecond)
 			}
 		}(i)
