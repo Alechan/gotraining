@@ -23,6 +23,7 @@ require (
 	github.com/go-stack/stack v1.8.0 // indirect
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
 	github.com/google/uuid v1.1.5 // indirect
+	github.com/google/wire v0.5.0
 	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/jung-kurt/gofpdf v1.16.2 // indirect
 	github.com/shirou/gopsutil v3.21.4-0.20210419000835-c7a38de76ee5+incompatible // indirect
