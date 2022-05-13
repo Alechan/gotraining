@@ -6,17 +6,17 @@
 package main
 
 import (
-	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/3-grumpy/event"
-	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/3-grumpy/greeter"
-	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/3-grumpy/message"
+	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/4-parametric-message/event"
+	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/4-parametric-message/greeter"
+	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/4-parametric-message/message"
 )
 
 // Injectors from wire.go:
 
 // InitializeEvent creates an Event. It will error if the Event is staffed with
 // a grumpy greeter.
-func InitializeEvent() (event.Event, error) {
-	messageMessage := message.NewMessage()
+func InitializeEvent(phrase string) (event.Event, error) {
+	messageMessage := message.NewMessage(phrase)
 	greeterGreeter := greeter.NewGreeter(messageMessage)
 	eventEvent, err := event.NewEvent(greeterGreeter)
 	if err != nil {

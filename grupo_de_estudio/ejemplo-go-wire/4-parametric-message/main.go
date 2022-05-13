@@ -21,7 +21,7 @@ import (
 )
 
 func main() {
-	e, err := InitializeEvent()
+	e, err := InitializeEvent("hi there!")
 	if err != nil {
 		fmt.Printf("failed to create event: %s\n", err)
 		os.Exit(2)
