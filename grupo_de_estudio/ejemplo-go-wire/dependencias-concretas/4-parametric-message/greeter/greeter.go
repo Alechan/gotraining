@@ -1,7 +1,7 @@
 package greeter
 
 import (
-	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/4-parametric-message/message"
+	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/dependencias-concretas/4-parametric-message/message"
 	"time"
 )
 

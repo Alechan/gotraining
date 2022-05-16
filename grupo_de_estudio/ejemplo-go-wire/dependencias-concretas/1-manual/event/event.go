@@ -2,7 +2,7 @@ package event
 
 import (
 	"fmt"
-	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/1-manual/greeter"
+	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/dependencias-concretas/1-manual/greeter"
 )
 
 // NewEvent creates an event with the specified greeter.

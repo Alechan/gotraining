@@ -3,7 +3,7 @@ package event
 import (
 	"errors"
 	"fmt"
-	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/4-parametric-message/greeter"
+	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/dependencias-concretas/3-grumpy/greeter"
 )
 
 // NewEvent creates an event with the specified greeter.

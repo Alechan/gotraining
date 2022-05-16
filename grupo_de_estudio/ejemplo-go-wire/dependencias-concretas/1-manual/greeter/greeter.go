@@ -1,7 +1,7 @@
 package greeter
 
 import (
-	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/1-manual/message"
+	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/dependencias-concretas/1-manual/message"
 )
 
 // NewGreeter initializes a Greeter.

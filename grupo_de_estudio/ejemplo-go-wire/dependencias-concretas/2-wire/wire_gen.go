@@ -6,9 +6,9 @@
 package main
 
 import (
-	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/2-wire/event"
-	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/2-wire/greeter"
-	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/2-wire/message"
+	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/dependencias-concretas/2-wire/event"
+	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/dependencias-concretas/2-wire/greeter"
+	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/dependencias-concretas/2-wire/message"
 )
 
 // Injectors from wire.go:

@@ -16,9 +16,9 @@
 package main
 
 import (
-	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/1-manual/event"
-	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/1-manual/greeter"
-	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/1-manual/message"
+	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/dependencias-concretas/1-manual/event"
+	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/dependencias-concretas/1-manual/greeter"
+	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/dependencias-concretas/1-manual/message"
 )
 
 func main() {

@@ -19,15 +19,15 @@
 package main
 
 import (
-	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/4-parametric-message/event"
-	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/4-parametric-message/greeter"
-	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/4-parametric-message/message"
+	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/dependencias-concretas/3-grumpy/event"
+	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/dependencias-concretas/3-grumpy/greeter"
+	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/dependencias-concretas/3-grumpy/message"
 	"github.com/google/wire"
 )
 
 // InitializeEvent creates an Event. It will error if the Event is staffed with
 // a grumpy greeter.
-func InitializeEvent(phrase string) (event.Event, error) {
+func InitializeEvent() (event.Event, error) {
 	wire.Build(event.NewEvent, greeter.NewGreeter, message.NewMessage)
 	return event.Event{}, nil
 }

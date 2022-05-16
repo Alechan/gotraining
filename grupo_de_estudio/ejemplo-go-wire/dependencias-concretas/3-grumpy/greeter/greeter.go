@@ -1,7 +1,7 @@
 package greeter
 
 import (
-	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/3-grumpy/message"
+	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/dependencias-concretas/3-grumpy/message"
 	"time"
 )
 

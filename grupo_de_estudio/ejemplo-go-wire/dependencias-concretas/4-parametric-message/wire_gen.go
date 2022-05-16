@@ -6,9 +6,9 @@
 package main
 
 import (
-	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/4-parametric-message/event"
-	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/4-parametric-message/greeter"
-	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/4-parametric-message/message"
+	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/dependencias-concretas/4-parametric-message/event"
+	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/dependencias-concretas/4-parametric-message/greeter"
+	"github.com/ardanlabs/gotraining/grupo_de_estudio/ejemplo-go-wire/dependencias-concretas/4-parametric-message/message"
 )
 
 // Injectors from wire.go:
